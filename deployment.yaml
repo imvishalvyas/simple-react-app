@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: prod
+  # pod template
+  template:
+    metadata:
+      labels:
+        run: prod
+        track: stable
+    spec:
+      containers:
+      - name: app
+        image: eu.gcr.io/verdant-sprite-228006/hello:build-7
+        imagePullPolicy: Always
+
